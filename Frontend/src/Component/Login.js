@@ -6,14 +6,14 @@ import './Login.css';
 function Login({ setUser }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState(''); // Error state used
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError(''); // Clear any previous errors
     try {
-      const response = await axios.post('http://localhost:5000/login', { email, password });
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/login`, { email, password }); // Use dynamic API base URL
       const { token, name, email: userEmail } = response.data;
       localStorage.setItem('token', token);
       localStorage.setItem('name', name);
@@ -29,7 +29,7 @@ function Login({ setUser }) {
       navigate('/dashboard');
     } catch (error) {
       console.error('Login failed', error);
-      setError('Login failed. Please check your credentials.');
+      setError('Login failed. Please check your credentials.'); // Set error message on failure
     }
   };
 
@@ -47,6 +47,7 @@ function Login({ setUser }) {
             <div className="avatar"></div>
           </div>
           <h2>LOGIN</h2>
+          {error && <p className="error-message">{error}</p>} {/* Display error message */}
           <form onSubmit={handleSubmit}>
             <div className="input-group">
               <input
@@ -71,7 +72,7 @@ function Login({ setUser }) {
             <button type="submit" className="login-button">LOGIN</button>
           </form>
           <div className="forgot-password">
-            <a href="/forgot-password">Forgot Username / Password?</a>
+            <Link to="/forgot-password">Forgot Username / Password?</Link> {/* Use Link component */}
           </div>
         </div>
       </main>
