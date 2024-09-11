@@ -41,7 +41,7 @@ function Dashboard({ user }) {
 
   return (
     <div style={{ display: 'flex', height: '100vh' }}>
-      <div style={{ width: '30%', borderRight: '1px solid #ccc', padding: '20px' }}>
+      <div style={{ width: '30%', borderRight: '1px solid #ccc', padding: '20px' ,textlign:'left',}}>
         <h1>Dashboard</h1>
         {user && (
           <div>
@@ -70,7 +70,7 @@ function Dashboard({ user }) {
         {selectedUser ? (
           <ChatBox selectedUser={selectedUser.email} currentUser={user.email} />
         ) : (
-          <p>Select a user to start chatting</p>
+          <p>Welcome! Select a user to start chatting</p>
         )}
       </div>
     </div>

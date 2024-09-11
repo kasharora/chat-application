@@ -9,11 +9,9 @@ function ChatBox({ selectedUser, currentUser }) {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    console.log('Registering user:', currentUser);
     socket.emit('register', currentUser);
 
     socket.on('chat message', (msg) => {
-      console.log('Received message:', msg);
       if ((msg.from === selectedUser && msg.to === currentUser) || 
           (msg.from === currentUser && msg.to === selectedUser)) {
         setMessages((prevMessages) => [...prevMessages, msg]);
@@ -21,7 +19,6 @@ function ChatBox({ selectedUser, currentUser }) {
     });
 
     socket.on('previous messages', (msgs) => {
-      console.log('Received previous messages:', msgs);
       setMessages(msgs);
     });
 
@@ -34,11 +31,10 @@ function ChatBox({ selectedUser, currentUser }) {
       socket.off('previous messages');
       socket.off('error');
     };
-  }, [currentUser]);
+  }, [currentUser, selectedUser]); // Add `selectedUser` to the dependency array
 
   useEffect(() => {
     if (selectedUser) {
-      console.log('Fetching messages for:', currentUser, selectedUser);
       setMessages([]);
       socket.emit('get messages', { user1: currentUser, user2: selectedUser });
     }
@@ -52,25 +48,37 @@ function ChatBox({ selectedUser, currentUser }) {
     e.preventDefault();
     if (message.trim()) {
       const newMessage = { from: currentUser, to: selectedUser, message: message.trim() };
-      console.log('Sending message:', newMessage);
       socket.emit('chat message', newMessage);
+      setMessages((prevMessages) => [...prevMessages, newMessage]); // Update state immediately
       setMessage('');
     }
   };
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <h2>Chat with {selectedUser}</h2>
+      <h2 style={{
+        textAlign: 'center',
+        backgroundColor: '#fff',
+        color: '#666',
+        padding: '10px',
+        borderRadius: '10px',
+        boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+        margin: '20px 10px',
+        fontSize: '24px'
+      }}>
+        Chat with {selectedUser}
+      </h2>
       <div style={{ flexGrow: 1, overflowY: 'auto', marginBottom: '20px' }}>
         {messages.map((msg, index) => (
           <div key={index} style={{
             textAlign: msg.from === currentUser ? 'right' : 'left',
-            margin: '5px',
-            padding: '5px',
+            margin: msg.from === currentUser ? '10px 10px 10px auto' : '10px auto 10px 10px',
+            padding: '10px',
             backgroundColor: msg.from === currentUser ? '#dcf8c6' : '#f0f0f0',
             borderRadius: '10px',
-            maxWidth: '70%',
-            alignSelf: msg.from === currentUser ? 'flex-end' : 'flex-start'
+            maxWidth: '30%',
+            alignSelf: msg.from === currentUser ? 'flex-end' : 'flex-start',
+            boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)'
           }}>
             <strong>{msg.from === currentUser ? 'You' : msg.from}:</strong> {msg.message}
           </div>

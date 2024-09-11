@@ -19,12 +19,14 @@ const io = socketIo(server, {
   }
 });
 
+// Connect to MongoDB
 mongoose.connect('mongodb+srv://kashishkurra:Kashish2001@cluster0.jiwgbvt.mongodb.net/chat-app-main', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
+// Define User Schema
 const UserSchema = new mongoose.Schema({
   name: String,
   mobileNumber: String,
@@ -34,7 +36,7 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema);
 
-// New Message Schema
+// Define Message Schema
 const MessageSchema = new mongoose.Schema({
   from: String,
   to: String,
@@ -44,6 +46,7 @@ const MessageSchema = new mongoose.Schema({
 
 const Message = mongoose.model('Message', MessageSchema);
 
+// Register API
 app.post('/register', async (req, res) => {
   const { name, mobileNumber, email, password, confirmPassword } = req.body;
 
@@ -69,6 +72,7 @@ app.post('/register', async (req, res) => {
   }
 });
 
+// Login API
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -94,6 +98,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
+// Get Users API (protected route)
 app.get('/users', async (req, res) => {
   const authHeader = req.headers['authorization'];
   if (!authHeader) {
@@ -158,6 +163,7 @@ io.on('connection', (socket) => {
     }
   });
 
+  // Fetch previous messages between two users
   socket.on('get messages', async ({ user1, user2 }) => {
     console.log(`Fetching messages between ${user1} and ${user2}`);
     try {

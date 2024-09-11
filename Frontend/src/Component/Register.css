@@ -1,0 +1,106 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #8DC3E5; /* Light blue background */
+}
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+.button-group {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.button-group button {
+  margin-left: 10px;
+  padding: 10px 15px;
+  font-size: 14px;
+  background-color: #4980B5; /* Darker blue */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-group button:hover {
+  background-color: #36628D; /* Darker hover effect */
+}
+
+.register-form {
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.register-form h2 {
+  margin-bottom: 30px;
+  color: #4980B5; /* Match the button color */
+}
+
+/* Input container with icons */
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-container .input-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #888;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 15px 5px 15px 35px; 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.register-form button {
+  width: 90%;
+  padding: 15px;
+  background-color: #4980B5; /* Darker blue */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-form button:hover {
+  background-color: #36628D; /* Darker hover effect */
+}
+
+.register-form .login-link {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #666;
+}
+
+.register-form .login-link span {
+  color: #4980B5;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.register-form .login-link span:hover {
+  color: #36628D; /* Darker hover effect */
+}
