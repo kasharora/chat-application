@@ -14,7 +14,7 @@ app.use(cors());
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: 'https://new-folder-8-frontend.onrender.com',
+    origin: 'https://chat-application-front-end-gohp.onrender.com',
     methods: ['GET', 'POST']
   }
 });
