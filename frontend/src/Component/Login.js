@@ -15,7 +15,7 @@ function Login({ setUser }) {
 
     try {
       // Use the correct API URL
-      const response = await axios.post('https://new-folder-backend.onrender.com/login', { email, password });
+      const response = await axios.post('https://chat-application-backend-9ejl.onrender.com/login', { email, password });
 
       // Check if response is not okay
       if (response.status !== 200) {
