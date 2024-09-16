@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 
-const socket = io("https://new-folder-backend.onrender.com");
+const socket = io("https://chat-application-backend-9ejl.onrender.com");
 
 function ChatBox({ selectedUser, currentUser }) {
   const [messages, setMessages] = useState([]);
