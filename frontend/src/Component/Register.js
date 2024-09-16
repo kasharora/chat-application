@@ -21,7 +21,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('https://new-folder-backend.onrender.com/register', formData);
+      await axios.post('https://chat-application-backend-9ejl.onrender.com/register', formData);
       alert('User registered successfully');
     } catch (error) {
       console.error(error);
