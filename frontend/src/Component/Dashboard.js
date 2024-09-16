@@ -16,7 +16,7 @@ function Dashboard({ user }) {
           return;
         }
 
-        const response = await axios.get('https://new-folder-backend.onrender.com/users', {
+        const response = await axios.get('https://chat-application-backend-9ejl.onrender.com/users', {
           headers: { Authorization: `Bearer ${token}` }
         });
         // Filter out the current user from the list
