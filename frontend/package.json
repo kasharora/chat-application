@@ -1,4 +1,6 @@
 {
+
+  "homepage": "https://kasharora.github.io/chat-application/",
   
   "name": "react-auth-app",
   
@@ -115,5 +117,10 @@
     
   ]
   
+  },
+    "devDependencies": {
+
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+
   }
 }
